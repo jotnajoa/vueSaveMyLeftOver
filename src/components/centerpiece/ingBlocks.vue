@@ -1,6 +1,6 @@
 <template>
 <div style='position:relative'>
-    <div class='blockbox midtext'>
+    <div class='blockbox smalltext'>
         <div class='names'>{{ingname}}</div>
         <img 
         @click="receiveIngredients(ingname,imgfile)"

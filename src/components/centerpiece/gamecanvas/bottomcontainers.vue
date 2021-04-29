@@ -1,16 +1,16 @@
 <template>
   <div class="bottomcontainer">
+    
     <el-carousel class='carousel' height="120px"
       :autoplay="false"
       indicator-position="inside"
       arrow="always"
-      
       >
       <el-carousel-item class='containers'
       v-for="(el,index) in ingredCollection" 
       :key="index" 
       >      
-          <div class= 'elements' style='color:black' v-for="(e,i) in el" :key="i">
+          <div class= 'elements' v-for="(e,i) in el" :key="i" @click="dishNavigate(e)">
             <div class='names smalltext'>{{e.name}} </div>
             <img class= 'ingimg' :src="e.img">
           </div> 
@@ -20,15 +20,18 @@
   <div style='display:none'>{{updatednumber}}</div>
 </template> 
 <script>
+
 export default {
-   inject:['selectedIngred'],
+   inject:['selectedIngred','dishNavigate','clicked'],
   data(){
     return {
       ingredCollection:[],
       initial:0
     }
   },
+  methods: {
 
+  },
   watch:{
 
     selectedIngred:{
@@ -88,6 +91,7 @@ export default {
   width:100%;
   position:relative;
   text-align:center;
+  cursor: pointer;
 }
 .names{
   color:#D9D1C7;

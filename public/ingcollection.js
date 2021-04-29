@@ -18,7 +18,6 @@ const getIng = new Promise((res, rej) => {
 async function collectAndsave() {
     let prevaluetoSave = await getIng;
     let uniqueSet = [...new Set(prevaluetoSave)];
-    console.log(uniqueSet);
     fs.writeFileSync('./ingredientsonly.json', JSON.stringify(uniqueSet))
 }
 

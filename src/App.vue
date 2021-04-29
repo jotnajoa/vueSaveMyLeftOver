@@ -47,6 +47,11 @@ export default {
   components:{sidePanel,centerPiece},
 
   methods: {
+    dishNavigate(e){
+      if(!this.clicked.includes(e)){
+        this.clicked.push(e)
+      }
+    },
     toggleoffSide(){
       this.sideisVisible=false;
       this.unfold=true
@@ -59,7 +64,6 @@ export default {
       // console.log(selected)
       if(!this.selectedIngred.some(el => el.name==selected)){
 
-        console.log(selected,'is added')
 
       let ingobj = new Object();
       ingobj.img=img;
@@ -105,7 +109,8 @@ export default {
     toggleoffSide:this.toggleoffSide,
     toggleonSide:this.toggleonSide,
     removeIngredient:this.removeIngredient,
-    clicked:this.clicked
+    clicked:this.clicked,
+    dishNavigate:this.dishNavigate
     }
   }
 }
@@ -126,10 +131,10 @@ export default {
   font-size:2rem;
 }
 .midtext{
-  font-size:1rem;
+  font-size:1.2rem;
 }
 .smalltext{
-  font-size:0.8rem;
+  font-size:0.7rem;
 }
 .slide-enter-active{
   animation:slidein 1s reverse ease-out

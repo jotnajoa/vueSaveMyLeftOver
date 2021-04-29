@@ -41,7 +41,6 @@ export default {
         something:function(){
             this.selectedIngred.forEach((d,i)=>{
             if(!this.ingContainer[i].ingName){
-                console.log('child receives ',d.name)
                 this.ingContainer[i].ingName=this.selectedIngred[i].name
                 this.ingContainer[i].img=this.selectedIngred[i].img;
             }else{
@@ -56,9 +55,9 @@ export default {
             handler:function(){
                 let selectedLength=this.selectedIngred.length;
                 let comparedLength=this.ingContainer.filter(d=>d.ingName).length;
-                console.log('selectlength',selectedLength);
-                console.log('compredLength is ', comparedLength)
-                console.log(this.ingContainer.filter(d=>d.ingName));
+                
+                
+                
                 
                 if(selectedLength<comparedLength){
 
@@ -70,7 +69,6 @@ export default {
                         // }
                         d.ingName=undefined;
                         d.img=undefined;
-                        console.log('you just clicked',this.clicked)
                     });
 
                 }

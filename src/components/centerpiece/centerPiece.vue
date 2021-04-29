@@ -6,21 +6,30 @@
         Choose your sleeping ingredients
     </div>
 
-    <div  class='gamepiece' v-show="selectedComponent=='bottom-container'">
-        <bottom-container >
+    <div class='gamepiece' v-show="selectedComponent=='bottom-container'">
+        <center-canvas v-if="selectedComponent=='bottom-container'"
+        :width='width'
+        :height='height'>
+        </center-canvas>
+        <bottom-container>
 
         </bottom-container>
+        <summary-container
+        :width='width'
+        :height='height'       
+        ></summary-container>
+
     </div>
 
     <div class='centerPiece' v-show="selectedComponent=='ing-blocks'">
-        
+
         <ing-blocks v-for="(ings,index) in ingCollection"
         :key=index
         :ingname=ings
         :index=index
          >
         </ing-blocks>
-        
+
     </div>
 
 </div>
@@ -31,7 +40,7 @@
     <div>Go back</div>
 </div>
 <div class="selections" v-show="selectedComponent=='ing-blocks'">
-    <img  @click='selectComponents("bottom-container");toggleoffSide()' src='check.png' class='buttonimg'>
+    <img  @click='selectComponents("bottom-container"); toggleoffSide() ' src='check.png' class='buttonimg'>
     <div>Complete</div>
 </div>
 </div>
@@ -40,6 +49,8 @@
 <script>
 import ingBlocks from './ingBlocks.vue'
 import bottomContainer from './gamecanvas/bottomcontainers.vue'
+import CenterCanvas from './gamecanvas/centercanvas.vue'
+import SummaryContainer from './gamecanvas/sumcontainer.vue'
 
 export default {
     inject:['ingCollection','selectedIngred','toggleoffSide','toggleonSide'],
@@ -48,24 +59,39 @@ export default {
         return{
             isGame:"ing-blocks",
             selectedComponent:'ing-blocks',
+            width:undefined,
+            height:undefined
         }
     },
     methods:{
  
         selectComponents(selected){
-            console.log(selected)
+
             this.selectedComponent = selected
-            console.log(this.selectedComponent)
+
+        },
+        resizewidth(){
+            this.width=document.querySelector('.bottomcontainer').clientWidth;
+            this.height=document.querySelector('.centercontainer').clientHeight*0.6;
         }
     },
     components:{
-        ingBlocks,bottomContainer
+        ingBlocks,bottomContainer,CenterCanvas,SummaryContainer
     },
     computed:{
         visible(){
             return this.visibleSide==true
         }
-    }
+    },
+  mounted(){
+    this.width=document.querySelector('.centercontainer').clientWidth*(9/7);
+    this.height=document.querySelector('.centercontainer').clientHeight*0.6;
+    console.log(this.height,this.width)
+    window.addEventListener('resize',this.resizewidth)
+  },
+  unmounted(){
+    window.removeEventListener('resize',this.resizewidth)
+  },
 
 }
 </script>
@@ -86,13 +112,13 @@ color:#D9D1C7;
 .centerTitle{
     display:grid;
     width:100%;
-    height:15%;
+    height:10%;
     text-align:center;
     align-items: center;
 }
 .centerPiece{
-    border-radius:20px;
-    width:100%;
+    /* border-radius:20px; */
+    width:90%;
     height:70%;
     display:grid;
     grid-template-columns: repeat(5,1fr);
@@ -101,9 +127,9 @@ color:#D9D1C7;
     gap:55px 0px;
     justify-items:center;
     padding-top:55px;
+    margin:auto;
 }
 .gamepiece{
-    
     opacity:1;
 
 }
