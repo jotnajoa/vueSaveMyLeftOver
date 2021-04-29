@@ -211,7 +211,6 @@ watch:{
         background:#1C1C1C;
     }
 .bars{
-    margin-left:1rem;
     background:#D8D8D8;
     border:solid 0.5px #D8D8D8;
 }
@@ -275,13 +274,14 @@ watch:{
         position:relative;
         display:inline-flex;
         overflow-x:auto;
-        /* justify-content: space-between; */
+        justify-content: space-evenly;
         /* overflow-y:hidden; */
         /* gap:0 1rem ; */
     }
-    .graphcontainer .bars{
-                /* margin-right: auto; */
-    }
+
+.bars:first-child {
+    margin-left:25px;
+}
     .active{
         background:#BF3C30;
         border:solid 1px #BF3C30;
