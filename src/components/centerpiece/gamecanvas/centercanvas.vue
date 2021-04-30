@@ -6,17 +6,18 @@
 
 </template>
 <script>
+
 import IngCircle from './ingcircle.js'
 export default {
 props:['width','height'],
 inject:['allData','ingCollection','selectedIngred'],
-// 전체 레시피 데이터를 받아야된다
+
 data() {
     return {
         circlearray:[],
         canvas:null,
         context:undefined,
-        orbitradius:this.width*1/3,
+        orbitradius:this.width*5/16,
         speed:0.06
     }
 },
@@ -38,7 +39,7 @@ mounted(){
 
     for (let i =0; i<10000;i++){
     var noise = getRandomArbitrary(0.8,1);
-    this.circlearray.push( new IngCircle(this.context,this.width/4,this.height/2,i,i,this.orbitradius,this.speed,this.speed,this.allData[i],noise))
+    this.circlearray.push( new IngCircle(this.context,this.width/3,this.height/2,i,i,this.orbitradius,this.speed,this.speed,this.allData[i],noise))
     }
     // })
 
@@ -55,7 +56,7 @@ mounted(){
             this.frameAnimate()
     },
 
-    methods: {
+methods: {
         canvasresize(){
             this.circlearray.forEach((d)=>{
                 d.center =[this.width/4,this.height/2]

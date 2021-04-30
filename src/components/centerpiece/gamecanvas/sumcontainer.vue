@@ -88,9 +88,7 @@
 import * as d3 from 'd3';
 export default {
 props:['width','height'],
-inject:['allData',
-        'ingCollection',
-        'selectedIngred',
+inject:['selectedIngred',
         'selectedDish',
         'clicked'],
 data(){
@@ -227,7 +225,7 @@ watch:{
 
     .largesection{
         width:90%;
-        height:21rem;
+        height:19rem;
         background:#2D4059;
         margin-top:10px;
         overflow-x:hidden;

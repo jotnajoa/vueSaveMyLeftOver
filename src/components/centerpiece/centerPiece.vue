@@ -86,7 +86,6 @@ export default {
   mounted(){
     this.width=document.querySelector('.centercontainer').clientWidth*(9/7);
     this.height=document.querySelector('.centercontainer').clientHeight*0.6;
-    console.log(this.height,this.width)
     window.addEventListener('resize',this.resizewidth)
   },
   unmounted(){

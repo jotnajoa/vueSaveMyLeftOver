@@ -47,7 +47,6 @@ export default {
             }
             this.ingredCollection=chunkMaxLength(a,5,4)
             let pageNumber=Math.floor(this.selectedIngred.length/5)+1;
-            console.log(pageNumber)
             this.initial=pageNumber
             let filtered =this.ingredCollection.filter((d)=>!d.length==0)
             this.ingredCollection=filtered;

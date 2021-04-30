@@ -9,7 +9,7 @@ export default class IngCircle {
         this.xspeed = xspeed;
         this.yspeed = yspeed;
         this.radius = 2
-        this.selected = false;
+        this.selected = 0;
         this.ing = ing;
         this.distance = this.orbitradius[0];
         this.colorArray = ['#aaaaaa22', '#68A7C0', '#D96B52']
