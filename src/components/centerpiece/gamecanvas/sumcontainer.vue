@@ -3,7 +3,7 @@
         width : `${width*0.3}px`,
         height:`${height}px`
     }">
-        <div class="headermsg midtext">Your Selection</div>
+        <div class="headermsg midtext">Ingredients Info</div>
         <div class="sections">
             <div class='smalltext leftside' >Current Selection</div>
             <div class='rightside'>{{latestelement}}</div>
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <transition name='fade'>
-            <div class="tooltip" v-show='current.name'>
+            <div class="tooltip smalltext" v-show='current.name'>
 
                 <div style='width:100%' class='tooltipsub'>
                     <div class="leftside">
@@ -155,7 +155,6 @@ computed: {
     axisline(){
         let gridsize = this.max/9;
         let gridarr = [];
-        console.log(gridsize);
         if(this.$refs.graph){
         for (let i = 0; i<10; i++){
             gridarr.push({actvalue:gridsize*i,scale:this.yScale(gridsize*(9-i))})
@@ -196,7 +195,7 @@ watch:{
 <style scoped>
     #summaryboard{
         position:absolute;
-        right:5%;
+        right:0%;
         top:10%;
         display:flex;
         flex-direction: column;
@@ -225,7 +224,7 @@ watch:{
 
     .largesection{
         width:90%;
-        height:19rem;
+        height:65%;
         background:#2D4059;
         margin-top:10px;
         overflow-x:hidden;

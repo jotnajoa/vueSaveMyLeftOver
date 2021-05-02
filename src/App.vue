@@ -48,9 +48,15 @@ export default {
 
   methods: {
     dishNavigate(e){
+
       if(!this.clicked.includes(e)){
         this.clicked.push(e)
+      } else{
+        let index = this.clicked.indexOf(e);
+        this.clicked.splice(index,1)
       }
+      
+      
     },
     toggleoffSide(){
       this.sideisVisible=false;
@@ -59,6 +65,11 @@ export default {
     toggleonSide(){
       this.sideisVisible=true;
       this.unfold=false
+      this.selectedDish.splice(0)
+      this.selectedIngred.splice(0)
+      this.clicked.splice(0)
+     
+     
     },
     receiveIngredients(selected,img){
       // console.log(selected)

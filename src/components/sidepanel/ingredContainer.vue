@@ -22,8 +22,8 @@ export default {
     width:100px;
     height:100px;
     border-radius: 100%;
-    background-color:#d8d8d864;
-    box-shadow: 4px 4px 4px #00000080;
+    background:rgba(255,255,255,0.05);
+    box-shadow: 0px 0px 2px 4px #00000023;
     position:relative;
     margin:auto;
 }
@@ -38,8 +38,10 @@ export default {
     animation:slidedown 1s
 }
 .active{
-    border:solid 0.5px #BFA863;
-    box-shadow: 0 0 8px 8px #bfa86381;
+    /* border:solid 0.5px #BFA863;
+    box-shadow: 0 0 8px 8px #bfa86381; */
+    border:solid 2px #d96b52b6;
+    box-shadow: 0 0 8px 8px #d96b5283;
     animation:halo 2s
     }
 
@@ -67,10 +69,10 @@ export default {
 }
 @keyframes halo{
         from{
-        box-shadow: 0 0 1px 1px #bfa86331;
+        box-shadow: 0 0 1px 1px #d96b5233;
     }    
     to{
-        box-shadow: 0 0 8px 8px #bfa8637e;
+        box-shadow: 0 0 8px 8px #d96b5283;
     }
 } 
 </style>

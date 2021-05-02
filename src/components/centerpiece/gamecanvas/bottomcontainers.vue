@@ -1,5 +1,5 @@
 <template>
-  <div class="bottomcontainer">
+  <div class="bottomcontainer" v-show="!checkedout">
     
     <el-carousel class='carousel' height="120px"
       :autoplay="false"
@@ -10,7 +10,9 @@
       v-for="(el,index) in ingredCollection" 
       :key="index" 
       >      
-          <div class= 'elements' v-for="(e,i) in el" :key="i" @click="dishNavigate(e)">
+          <div class= 'elements' v-for="(e,i) in el" :key="i" @click="dishNavigate(e)" 
+          :class="{selectedItm:Array.from(clicked).includes(e)}"
+          >
             <div class='names smalltext'>{{e.name}} </div>
             <img class= 'ingimg' :src="e.img">
           </div> 
@@ -23,15 +25,14 @@
 
 export default {
    inject:['selectedIngred','dishNavigate','clicked'],
+   props:['checkedout'],
   data(){
     return {
       ingredCollection:[],
       initial:0
     }
   },
-  methods: {
 
-  },
   watch:{
 
     selectedIngred:{
@@ -116,6 +117,9 @@ export default {
   width:100%;
   position:absolute;
   bottom:5%;
+}
+.selectedItm{
+  opacity:0.5
 }
 
 
