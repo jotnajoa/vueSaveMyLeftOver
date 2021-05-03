@@ -1,7 +1,7 @@
 <template>
     <div id='summaryboard' :style="{
         width : `${width*0.3}px`,
-        height:`${height}px`
+        height:`${height*0.92}px`
     }">
         <div class="headermsg clearmidtext">Ingredients Info</div>
         <div class="sections">
@@ -226,7 +226,7 @@ watch:{
 
     .largesection{
         width:90%;
-        height:65%;
+        height:70%;
         background:#1F2631;
         border:solid 1px #bf3c3086;
         margin-top:10px;

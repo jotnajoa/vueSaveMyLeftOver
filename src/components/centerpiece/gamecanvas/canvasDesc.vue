@@ -15,7 +15,7 @@
             </div>
         <!-- {{clicked.length}},{{circleArray.length}},{{width}},{{height}} -->
     </div>
-    <div v-show="checkedout" class='bottomDesc' :style="{height:`${customHeight*0.45}px`,transform:`translate(0,${margin}px)`}">
+    <div v-show="checkedout" class='bottomDesc' :style="{height:`${customHeight*0.45}px`,transform:`translate(0,${0}px)`}">
         <div class="icons clearsmalltext" v-for="(final,index) of finalCheckout" :key=index 
         :style="{height:`${customHeight*0.35}px`
         ,width:`${computedWidth[index]}px`}"
@@ -50,12 +50,18 @@
                 :style="{width:`${countingWidth}px`,
                 height:`${customHeight*0.3}px`
                 }">
-                    <div v-for='(ings,index) of totalIngs' 
+                    <!-- <div v-for='(ings,index) of totalIngs' 
+                    :key=index
+                    class='ings'
+                    :class="{has:ings.has}"
+                    > -->
+                    <img v-for='(ings,index) of totalIngs' :src="require(`../../../../public/block${index%4}.png`)"
                     :key=index
                     class='ings'
                     :class="{has:ings.has}"
                     >
-                    </div>
+
+                    <!-- </div> -->
                 </div>
             </div>
 
@@ -80,11 +86,11 @@
         </div>
     </div>
         <div style='position:absolute; left:0px; width:2px' v-show="checkedout"
-        :style="{top:`${customHeight*7/6}px`,height:`${customHeight*0.41}px`,transform:`translate(0,${margin}px)`}"
+        :style="{top:`${customHeight*7/6}px`,height:`${customHeight*0.425}px`,transform:`translate(0,${margin}px)`}"
         class='sideblock left'
         ></div>
         <div style='position:absolute; right:0px; width:2px' v-show="checkedout"
-        :style="{top:`${customHeight*7/6}px`,height:`${customHeight*0.41}px`,transform:`translate(0,${margin}px)`}"
+        :style="{top:`${customHeight*7/6}px`,height:`${customHeight*0.425}px`,transform:`translate(0,${margin}px)`}"
         class='sideblock right'
         ></div>
     </div>
@@ -230,6 +236,7 @@ export default {
    mounted() {
        this.customWidth=this.width;
        this.customHeight=this.height;
+       this.margin = this.height*0.01;
        window.addEventListener('resize',this.resize)
 
    }, 
@@ -405,18 +412,18 @@ export default {
     align-content: flex-start
 }
 .ings{
-    width:20px;
-    height:20px;
-    border-radius:10px;
-    background:#D9D1C7;
+    width:1.5rem;
+    height:1.5rem;
+    /* border-radius:10px; */
+    /* background:#D9D1C7; */
     flex-shrink: 0;
-    box-shadow: 0px 0px 2px 1px #d9d1c781;
-    opacity:0.6
+    /* box-shadow: 0px 0px 2px 1px #d9d1c781; */
+    opacity:0.4
 
 }
 .ings.has{
-    background-color:#D96B52;
-    box-shadow: 0px 0px 2px 2px #D96B52;
+    /* background-color:#D96B52; */
+    /* box-shadow: 0px 0px 2px 2px #D96B52; */
     opacity:1
 }
 .allIngs{

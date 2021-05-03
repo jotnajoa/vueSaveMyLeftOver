@@ -44,9 +44,9 @@ export default class IngCircle {
         if (this.checkout && this.selection == this.biggest) {
             this.rand = 0;
             this.currentRadius = 5
-            xpos = this.center[0] - this.distance + ((this.finalIndex % 20) * this.distance / 8)
-            ypos = this.center[1] + this.distance * Math.sin(this.y) * this.noise + this.rand +
-                (Math.floor(this.finalIndex / 20) * this.distance / 10) - this.distance / 2
+            xpos = this.center[0] - (this.distance / 2) + ((this.finalIndex % 10) * this.distance / 8)
+            ypos = this.center[1] - (this.distance / 2) + this.distance / 2 * Math.sin(this.y) * this.noise + this.rand +
+                (Math.floor(this.finalIndex / 10) * this.distance / 10)
 
             this.currentColor = '#D96B52'
             this.context.shadowColor = '#D96B52'

@@ -68,7 +68,7 @@ export default {
 .carousel{
 
   text-align:center;
-  position:relative;
+  /* position:relative; */
   width:100%;
   /* border:solid 1px green; */
 
@@ -80,7 +80,7 @@ export default {
   border-radius:50px;
   border: solid 1px #d96b5288;
   align-items: center;
-  justify-content: start;
+  justify-content: space-around;
   height:95%;
   width:98%;
   margin-left:1%;
@@ -88,7 +88,7 @@ export default {
 }
 .elements{
   height:70%;
-  min-width:200px;
+  /* min-width:200px; */
   margin-left:0%;
   position:relative;
   text-align:center;
