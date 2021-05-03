@@ -361,6 +361,7 @@ export default {
 }
 .countings{
     /* position:absolute; */
+    margin-top:10px;
     width:100%;
     height:100%;
     display:flex;
@@ -374,10 +375,14 @@ export default {
     border-radius:10px;
     background:#D9D1C7;
     flex-shrink: 0;
+    box-shadow: 0px 0px 2px 1px #d9d1c781;
+    opacity:0.6
 
 }
 .ings.has{
     background-color:#D96B52;
+    box-shadow: 0px 0px 2px 2px #D96B52;
+    opacity:1
 }
 .allIngs{
     position:absolute;

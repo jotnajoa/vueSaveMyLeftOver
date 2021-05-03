@@ -8,7 +8,7 @@ export default class IngCircle {
         this.rad = orbitradius;
         this.orbitradius = [];
         for (let i = 0; i < 10; i++) {
-            this.orbitradius.push(this.rad * (1 - 0.2 * i))
+            this.orbitradius.push(this.rad * (1 - 0.15 * i))
         }
         this.checkout = false;
         this.finalIndex = finalIndex;
@@ -16,7 +16,7 @@ export default class IngCircle {
         this.blurIs = false;
         this.xspeed = 0.01;
         this.yspeed = 0.01;
-        this.radius = [1, 2, 3, 7, 9, 12, 23, 27, 31, 35];
+        this.radius = [1, 2, 3, 4, 5, 6, 23, 27, 31, 35];
         this.currentRadius = 1
         this.ing = ing;
         this.selection = ing.selection;
@@ -43,8 +43,8 @@ export default class IngCircle {
 
         if (this.checkout && this.selection == this.biggest) {
             this.rand = 0;
-            this.currentRadius = 6
-            xpos = this.center[0] - this.distance + ((this.finalIndex % 20) * this.distance / 10)
+            this.currentRadius = 5
+            xpos = this.center[0] - this.distance + ((this.finalIndex % 20) * this.distance / 8)
             ypos = this.center[1] + this.distance * Math.sin(this.y) * this.noise + this.rand +
                 (Math.floor(this.finalIndex / 20) * this.distance / 10) - this.distance / 2
 
@@ -134,12 +134,12 @@ export default class IngCircle {
     }
     blurcheck() {
         if (this.blurIs) {
-            this.context.lineWidth = 2;
+            this.context.lineWidth = 1;
             this.context.strokeStyle = '#68A7C0';
             this.context.shadowColor = '#68A7C0';
             this.context.shadowOffsetX = 0;
             this.context.shadowOffsetY = 0;
-            this.context.shadowBlur = 10;
+            this.context.shadowBlur = 2;
             this.currentColor = this.colorArray[1]
         } else {
             this.context.lineWidth = 0;
@@ -153,7 +153,7 @@ export default class IngCircle {
     }
 
     updateCircle(num) {
-            this.currentRadius = this.radius[num]
+            this.currentRadius = this.radius[Math.floor(num / 3)]
             this.distance = this.orbitradius[num]
         }
         // endMove() {

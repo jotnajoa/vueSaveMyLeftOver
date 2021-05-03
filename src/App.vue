@@ -27,13 +27,15 @@ export default {
   
   mounted(){
     Promise.all([
-      d3.json('data.json'),
-      d3.json('ingredientsonly.json')
+      d3.json('data1.json'),
+      d3.json('freqIng6.json')
     ]).then((data)=>{
       data[0].forEach((d)=>{
         this.allData.push(d)
       })
-      data[1].forEach((t,i)=>{
+
+      let arr = Object.keys(data[1])
+      arr.forEach((t,i)=>{
         // for ingredient selection, 
         // later on, need to sort the ingredients by
         // frequency of the ingredients in the data set

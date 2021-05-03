@@ -56,7 +56,7 @@
 </div>
 <div class="controller">
 
-<div class="selections">
+<div class="selections" v-show="selectedComponent!='ing-blocks'">
     <img @click='selectComponents("ing-blocks");toggleonSide();cleanValue()' src='goback.png' class='buttonimg'>
     <div>Go back</div>
 </div>
@@ -65,8 +65,11 @@
     <div>Complete</div>
 </div>
 <div class="selections" v-show="selectedComponent!='ing-blocks'">
-    <img  @click='checkout' src='checkout.png' class='buttonimg'>
-    <div>Check out</div>
+    <img  @click='checkout' src='checkout.png' 
+    class='buttonimg'
+    :class="{finished:finish}"
+    >
+    <div :class="{finished:finish}">Check out</div>
     </div>
 </div>
 </template>
@@ -95,6 +98,7 @@ export default {
             stage:1,
             max:1,
             checkedout:false,
+            finish:false
             // cleanup:false
         }
     },
@@ -103,14 +107,15 @@ export default {
             this.checkedout=false;
             this.cleanup=true;
             setTimeout(()=>{this.cleanup=false},500)
+            this.finish=false;
         },
         checkout(){
             this.checkedout=true
             this.circleArray.forEach((d)=>{
                 d.checkout=true
             })
+            this.finish=true;
 
- 
              let finalArray=[];
 
 
@@ -338,7 +343,7 @@ color:#D9D1C7;
 
 }
 .finished{
-    opacity:0.5;
+    opacity:0.3;
     pointer-events: none;
 }
 

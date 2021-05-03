@@ -71,24 +71,25 @@ export default {
   position:relative;
   width:100%;
   /* border:solid 1px green; */
-  margin:auto;
+
 
 }
 .containers{
-  display:grid;
-  grid-auto-flow: column;
-  border-radius:70px;
-  border:solid 1px grey;
-  align-items: start;
-  align-content: center;
+  display:flex;
+  /* grid-auto-flow: column; */
+  border-radius:50px;
+  border: solid 1px #d96b5288;
+  align-items: center;
+  justify-content: start;
   height:95%;
-  width:99.5%;
-
+  width:98%;
+  margin-left:1%;
 
 }
 .elements{
-  height:100%;
-  width:100%;
+  height:70%;
+  min-width:200px;
+  margin-left:0%;
   position:relative;
   text-align:center;
   cursor: pointer;
@@ -109,7 +110,7 @@ export default {
 
 
   .el-carousel__item:nth-child(2n),.el-carousel__item:nth-child(2n+1){
-    background-color: #39414B;
+    background:#1F2631;
   }
 
 
