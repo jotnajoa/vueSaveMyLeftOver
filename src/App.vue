@@ -35,14 +35,23 @@ export default {
       })
 
       let arr = Object.keys(data[1])
-      arr.forEach((t,i)=>{
-        // for ingredient selection, 
-        // later on, need to sort the ingredients by
-        // frequency of the ingredients in the data set
-        if(i<100){
-      this.ingCollection.push(t)
-        }
+
+// only top 200
+for(let i = 0; i<200; i++){
+  let ing = arr[i];
+  let visible = true;
+  let obj ={ing:ing,visible:visible};
+  this.ingCollection.push(obj)
+
+}
+/* having all ingredients
+      arr.forEach((t)=>{
+        let ing = t;
+        let visible = true;
+        let obj ={ing:ing,visible:visible};
+        this.ingCollection.push(obj)
       })
+*/
 
     })
   },
@@ -141,7 +150,7 @@ export default {
   display:flex;
 }
 .bigtext{
-  font-size:2rem;
+  font-size:1.5rem;
 }
 .midtext{
   font-size:1.2rem;
@@ -154,6 +163,9 @@ export default {
 }
 .slide-leave-active{
   animation:slidein 1s forwards ease-out
+}
+.leftshift{
+  margin-left:15px;
 }
 @keyframes slidein {
   from{

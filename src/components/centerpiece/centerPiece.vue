@@ -2,9 +2,20 @@
 <div class="centercontainer" :class="{active:visible}">
     
     
-    <div class="centerTitle bigtext">
-        Choose your sleeping ingredients <p style='display:none'></p>
+    <div class="centerTitle" v-show="selectedComponent!='bottom-container'">
+        <div class='midtext leftshift' style='font-weight:bold'>Choose your sleeping ingredients</div>
+        <div class='smalltext leftshift' style='font-weight:thin'>Select ingredients you already have and explore dishes you can make using them!</div>
+            <div class='searchsection leftshift'>
+            <input class="search" v-on:keyup.enter="searching" v-model='searchword'>
+            <img class='searchicon' @click='searching' src='searchicon.png'>
+            </div>
+        <!-- </input> -->
     </div>
+
+    <div class="sideTitle" v-if="selectedComponent=='bottom-container'">
+        <div class='midtext leftshift'>Explore Dishes</div>
+    </div>
+
 
     <div class='gamepiece' v-show="selectedComponent=='bottom-container'">
         <!-- <center-canvas v-if="selectedComponent=='bottom-container'"
@@ -45,9 +56,9 @@
 
         <ing-blocks v-for="(ings,index) in ingCollection"
         :key=index
-        :ingname=ings
+        :ingname=ings.ing
         :index=index
-        :class="{finished:stop}"
+        :class="{finished:stop , hideIng:!ings.visible}"
          >
         </ing-blocks>
         
@@ -87,6 +98,7 @@ export default {
     props:['visibleSide'],
     data(){
         return{
+            searchword:'',
             isGame:"ing-blocks",
             selectedComponent:'ing-blocks',
             width:undefined,
@@ -103,6 +115,25 @@ export default {
         }
     },
     methods:{
+        searching(){
+            this.ingCollection.forEach((d)=>{
+                if(this.searchword.length>1){
+                    let ings = d.ing.split(' ');
+                let include = ings.includes(this.searchword);
+                console.log(include)
+                if(include){
+                    d.visible=true
+                }else{
+                    d.visible=false;
+                }
+                }else if(this.searchword==''){
+                    d.visible=true;
+                }
+                
+            })
+            console.log(this.searchword)
+
+        },
         cleanValue(){
             this.checkedout=false;
             this.cleanup=true;
@@ -291,12 +322,18 @@ color:#D9D1C7;
 }
 
 .centerTitle{
-    display:grid;
-    width:100%;
-    height:10%;
-    text-align:center;
-    align-items: center;
+    border-bottom:solid 1px #97979734;
+    box-shadow: 0 2px 2px 0px rgba(58, 58, 58, 0.673);
+    background:rgba(0, 0, 0, 0.182);
+    /* display:grid; */
+    width:107%;
+    height:15%;
+    /* text-align:center; */
+    /* align-items: center; */
     /* border:solid 1px red; */
+}
+.sideTitle{
+    height:10%;
 }
 .centerPiece{
     /* border-radius:20px; */
@@ -346,6 +383,32 @@ color:#D9D1C7;
     opacity:0.3;
     pointer-events: none;
 }
-
+.search{
+  background: transparent;
+  color: #D9D1C7;
+  border: none;
+  height:1.5rem;
+  width:430px;
+  outline: none;
+  resize: none;
+  border-radius:5px;
+}
+.searchsection{
+    position:relative;
+    top:1rem;
+    border: solid 1px #d9d1c777;
+    width: 450px;
+}
+.searchicon{
+    width:18px;
+    display:inline;
+    position:absolute;
+    right:2px;
+    top:4px;
+    cursor: pointer;
+}
+.hideIng{
+    display:none;
+}
 
 </style>
