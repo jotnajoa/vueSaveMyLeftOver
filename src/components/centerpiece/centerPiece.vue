@@ -3,17 +3,22 @@
     
     
     <div class="centerTitle" v-show="selectedComponent!='bottom-container'">
-        <div class='midtext leftshift' style='font-weight:bold'>Choose your sleeping ingredients</div>
-        <div class='smalltext leftshift' style='font-weight:thin'>Select ingredients you already have and explore dishes you can make using them!</div>
+        <div class='bigtext leftshift' style='font-weight:bold;text-decoration:underline'>Choose your sleeping ingredients</div>
+        <div class='clearsmalltext leftshift' style='font-weight:thin'>Select ingredients you already have and explore dishes you can make using them!</div>
             <div class='searchsection leftshift'>
-            <input class="search" v-on:keyup.enter="searching" v-model='searchword'>
+            <input class="search" 
+            placeholder="Search name of ingredient"
+            v-on:keyup.enter="searching" v-model='searchword'>
             <img class='searchicon' @click='searching' src='searchicon.png'>
             </div>
         <!-- </input> -->
     </div>
 
     <div class="sideTitle" v-if="selectedComponent=='bottom-container'">
-        <div class='midtext leftshift'>Explore Dishes</div>
+        <div class='bigtext leftshift'
+        style='text-decoration:underline'
+        >Explore Dishes</div>
+        <div class='clearsmalltext leftshift'>Explore dishes having the ingredients you selected</div>
     </div>
 
 
@@ -322,9 +327,9 @@ color:#D9D1C7;
 }
 
 .centerTitle{
-    border-bottom:solid 1px #97979734;
-    box-shadow: 0 2px 2px 0px rgba(58, 58, 58, 0.673);
-    background:rgba(0, 0, 0, 0.182);
+    /* border-bottom:solid 1px #97979734; */
+    box-shadow: 0 1px 1px 0px rgba(58, 58, 58, 0.373);
+    background:rgba(0, 0, 0, 0.1);
     /* display:grid; */
     width:107%;
     height:15%;
@@ -334,6 +339,8 @@ color:#D9D1C7;
 }
 .sideTitle{
     height:10%;
+    width:100vw;
+    background:rgba(0, 0, 0, 0.1);
 }
 .centerPiece{
     /* border-radius:20px; */
@@ -373,12 +380,7 @@ color:#D9D1C7;
     transform:translate(0,-5vh);
     cursor: pointer;
 }
-.div{
-    color:#7cacbf20;
-    color:#68A7C0;
-    color:#D96B52;
 
-}
 .finished{
     opacity:0.3;
     pointer-events: none;

@@ -8,15 +8,15 @@
         :style="{width:'95%',
         top:`${circleArray[0].orbitradius[0]-circleArray[0].orbitradius[stage-1]}px`        
         }"
-        class='indicators'
+        class='indicators clearsmalltext'
         :class="{active:stage==stageNumber,checkedout:checkedout}"
         >
-            <span >{{stage}}</span><span > ingredient:</span><span style='padding-left:5px' class='mediumtext'>{{ingCounter[stage].count}}</span>
+            <span >{{stage}}</span><span > ingredient:</span><span style='padding-left:5px' class='clearmidtext'>{{ingCounter[stage].count}}</span>
             </div>
         <!-- {{clicked.length}},{{circleArray.length}},{{width}},{{height}} -->
     </div>
     <div v-show="checkedout" class='bottomDesc' :style="{height:`${customHeight*0.45}px`,transform:`translate(0,${margin}px)`}">
-        <div class="icons" v-for="(final,index) of finalCheckout" :key=index 
+        <div class="icons clearsmalltext" v-for="(final,index) of finalCheckout" :key=index 
         :style="{height:`${customHeight*0.35}px`
         ,width:`${computedWidth[index]}px`}"
          :class="{expand:finalCheckout[index].expand,hide:!finalCheckout[index].visible}" 
@@ -40,7 +40,7 @@
             top:`${customHeight*0.16}px`,
             width:`${finalCheckout[index].expand==true? countingWidth:150}px`
             }"
-            >{{final.ing.title}}</div>
+            >{{final.ing.title}} <div v-if='!collapsed' style='color:#D9D1C7;cursor:pointer;text-decoration:underline' class='clearmidtext' @click='modalOpen'>Show Details</div></div>
 
             <div class="ingCounting" 
             v-if='!collapsed'
@@ -89,10 +89,21 @@
         ></div>
     </div>
     <div style='display:none'>{{computedWidth}}</div>
+
+
+    <teleport to="body">
+      <div v-if="modalVisible" class="modal" @click='modalClose'>
+        <div class='article'>
+        <div class='clearbigtext articleheader'>{{finalCheckout[currentSelection].ing.title}}</div>
+        <div class='clearsmalltext articledesc'>{{detailInstruction}} </div>
+        </div>
+      </div>
+    </teleport>
 </template>
 <script>
 export default {
     props:['clicked','circleArray','width','height','checkedout','max'],
+    inject:['instructions'],
     data(){
         return{
             stageNumber:0,
@@ -100,7 +111,8 @@ export default {
             customHeight:undefined,
             margin:10,
             collapsed:true,
-            currentSelection:undefined
+            currentSelection:undefined,
+            modalVisible:false
         }
     },
     // biggestNumber를 찾아나서야 함
@@ -113,12 +125,28 @@ export default {
            deep:true
        },
         finalCheckout:{
-          handler:function(a){
-              console.log('finalcheck out is well monitored',a)
+          handler:function(){
+              console.log('finalcheck out is well monitored')
           }
       }
    },
    computed:{
+       detailInstruction(){
+           if(this.finalCheckout.length>0){
+            let openvalue = this.modalVisible;
+            console.log(openvalue)
+            let selectedId=this.finalCheckout[this.currentSelection].ing.id;
+            console.log(selectedId)
+            let insturctionTarget=this.instructions.filter(d=>d.id==selectedId);
+            console.log(insturctionTarget[0].instructions)
+            let instruction = insturctionTarget[0].instructions
+            // console.log(instruction)
+            return instruction
+           }else{
+               return ''
+           }
+
+       },
        totalIngs(){
            if(this.collapsed){
                return []
@@ -209,6 +237,12 @@ export default {
     window.removeEventListener('resize',this.resize)
   },
   methods: {
+      modalOpen(){
+          this.modalVisible=true;
+      },
+      modalClose(){
+          this.modalVisible=false;
+      },
       expandSelection(idx){
           this.finalCheckout.forEach((d,i)=>{
               if(i==idx){
@@ -293,12 +327,13 @@ export default {
     border: solid 1px #D96B52;
     position:relative;
     overflow-y:hidden;
+       overflow-x:hidden;
     /* display:flex;
     flex-direction: column;
     justify-content: center; */
     align-items:center;
     margin-left:4.4%;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.4s linear;
     
 }
 .icons:hover{
@@ -414,6 +449,38 @@ export default {
 }
 .details.has{
     border:solid 1px #D96B52;
+}
+.modal{
+    position:absolute;
+    top:0;
+    left:0;
+    text-align:center;
+    width:100vw;
+    height:100vh;
+    background-color:rgba(24, 24, 24, 0.493);
+    backdrop-filter: blur(2px);
+
+}
+.article{
+    background:#1c1c1cb7;
+    font-family:Providence Sans pro;
+    position:absolute;
+    left:50%;
+    transform:translate(-50%,20%);
+    color:#D9D1C7;
+    width:40%;
+    height:70vh;
+    border:solid 1px #d9d1c76e;
+    box-shadow:0 0 3px 3px #D96B52;
+    padding:1rem;
+}
+.articleheader{
+    text-align:center;
+}
+.articledesc{
+    font-size:0.9rem;
+    margin-top:2rem;
+    text-align:start;
 }
 
 </style>

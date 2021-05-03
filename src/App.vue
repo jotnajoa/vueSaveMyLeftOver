@@ -20,7 +20,8 @@ export default {
     selectedDish:[],
     selectedIngred:[],
     sideisVisible:true,
-    clicked:[]
+    clicked:[],
+    instructions:[]
     }
   },
 
@@ -28,13 +29,18 @@ export default {
   mounted(){
     Promise.all([
       d3.json('data1.json'),
-      d3.json('freqIng6.json')
+      d3.json('freqIng6.json'),
+      d3.json('instructions.json')
     ]).then((data)=>{
       data[0].forEach((d)=>{
         this.allData.push(d)
       })
 
-      let arr = Object.keys(data[1])
+      let arr = Object.keys(data[1]);
+
+      data[2].forEach((d)=>{
+        this.instructions.push(d)
+      })
 
 // only top 200
 for(let i = 0; i<200; i++){
@@ -42,7 +48,6 @@ for(let i = 0; i<200; i++){
   let visible = true;
   let obj ={ing:ing,visible:visible};
   this.ingCollection.push(obj)
-
 }
 /* having all ingredients
       arr.forEach((t)=>{
@@ -132,7 +137,8 @@ for(let i = 0; i<200; i++){
     toggleonSide:this.toggleonSide,
     removeIngredient:this.removeIngredient,
     clicked:this.clicked,
-    dishNavigate:this.dishNavigate
+    dishNavigate:this.dishNavigate,
+    instructions:this.instructions
     }
   }
 }
@@ -141,7 +147,7 @@ for(let i = 0; i<200; i++){
 <style>
 @import url('https://use.typekit.net/qtl2aho.css');
 
-
+/* font-family: acumin-pro, */
 #app{
   font-family:Providence Sans pro;
   background:radial-gradient(#2D4059,#0E151E);
@@ -150,12 +156,36 @@ for(let i = 0; i<200; i++){
   display:flex;
 }
 .bigtext{
+  font-family:Providence Sans pro;
   font-size:1.5rem;
 }
+
+
+
 .midtext{
-  font-size:1.2rem;
+  font-family:Providence Sans pro;
+  font-size:1rem;
 }
+
 .smalltext{
+  font-family:Providence Sans pro;
+  font-size:0.7rem;
+}
+.tinytext{
+  font-family:macho;
+  font-size:0.7rem;
+}
+.clearbigtext{
+  font-family:macho;
+  font-size:1.5rem;
+}
+.clearmidtext{
+  font-family:macho;
+  font-size:1rem;
+  font-weight:100;
+}
+.clearsmalltext{
+  font-family:macho;
   font-size:0.7rem;
 }
 .slide-enter-active{

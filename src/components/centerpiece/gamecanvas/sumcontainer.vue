@@ -3,15 +3,15 @@
         width : `${width*0.3}px`,
         height:`${height}px`
     }">
-        <div class="headermsg midtext">Ingredients Info</div>
+        <div class="headermsg clearmidtext">Ingredients Info</div>
         <div class="sections">
-            <div class='smalltext leftside' >Current Selection</div>
-            <div class='rightside'>{{latestelement}}</div>
+            <div class='clearsmalltext leftside' >Current Selection</div>
+            <div class='clearmidtext rightside'>{{latestelement}}</div>
         </div>
 
         <div class="sections">
-            <div class='smalltext leftside'>Ingredients Selected</div>
-            <div class='rightside'><span>{{clicked.length}}</span> / {{selectedIngred.length}}</div>
+            <div class='clearsmalltext leftside'>Ingredients Selected</div>
+            <div class='clearmidtext rightside'><span>{{clicked.length}}</span> / {{selectedIngred.length}}</div>
         </div>
 
         <div class="largesection">
@@ -19,7 +19,7 @@
             <div class='buttoncollector'>
                 <div v-for='(ing,idx) of clicked' 
                 :key='idx' 
-                class='smalltext ingbtn'
+                class='clearsmalltext ingbtn'
                 @mouseover="highlight(idx)"
                 @mouseout='reset'
                 >
@@ -42,12 +42,12 @@
                 position:absolute; 
                 bottom:-1rem;
                 width:4rem;
-                height:1rem' class='smalltext'>{{idx+1}}</span>
+                height:1rem' class='clearsmalltext'>{{idx+1}}</span>
                 </div>
 
                 <div class="grid">
                     <div v-for="(axis,idx) of axisline"
-                    class='axis smalltext'
+                    class='axis tinytext'
                     :key=idx
                     :style="{height:`${0.5}px`,width:`${100}%`,transform:`translate(0,${axis.scale}px)`}"
                     >
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <transition name='fade'>
-            <div class="tooltip smalltext" v-show='current.name'>
+            <div class="tooltip clearsmalltext" v-show='current.name'>
 
                 <div style='width:100%' class='tooltipsub'>
                     <div class="leftside">
@@ -195,24 +195,26 @@ watch:{
 <style scoped>
     #summaryboard{
         position:absolute;
-        right:0%;
-        top:10%;
+        right:1%;
+        top:12%;
         display:flex;
         flex-direction: column;
         align-items: center;
-        background:#1c1c1c80
+        background:#1c1c1c80;
+        opacity:0.9;
     }
     .headermsg{
         width:100%;
         text-align:center;
-        background:#1C1C1C;
+        background:#1c1c1c81;
     }
 .bars{
     background:#D8D8D8;
     border:solid 0.5px #D8D8D8;
 }
     .sections{
-        background:#2D4059;
+        background:#1F2631;
+        border:solid 1px #bf3c3086;
         width:90%;
         height:2rem;
         display:flex;
@@ -225,7 +227,8 @@ watch:{
     .largesection{
         width:90%;
         height:65%;
-        background:#2D4059;
+        background:#1F2631;
+        border:solid 1px #bf3c3086;
         margin-top:10px;
         overflow-x:hidden;
         overflow-y:hidden;

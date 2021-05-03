@@ -1,9 +1,9 @@
 <template>
     <div class='side'>
-        <div class='midtext' style='margin:auto;top:5%;width:100%;height:25px;background:#D9D1C7;text-align:center;display:grid;align-items:center;color:#1C1C1C'>Your Selection</div>
-        <div class="counter midtext">
+        <div class='clearbigtext' style='margin:auto;width:100%;background:#D9D1C7;text-align:center;display:grid;align-items:center'>Your Selection</div>
+        <div class="counter clearmidtext">
             <div style='width:15px;height:100%'></div>
-            <img src="chefhelm.png" style='display:inline-block;width:20px;height:20px;' alt="">
+            <!-- <img src="chefhelm.png" style='display:inline-block;width:20px;height:20px;' alt=""> -->
             <div>Selected: <span> {{ingContainer.filter(d=>d.ingName).length}}</span>/10</div>
         </div>
         <div class="sidesection">
@@ -30,7 +30,7 @@ export default {
         }
     },
     mounted(){
-        for(let i=0;i<12;i++){
+        for(let i=0;i<10;i++){
             let object =new Object();
             object.ingName=undefined;
             object.img=undefined;
@@ -90,21 +90,21 @@ export default {
 .side{
     width:25vw;
     height:100vh;
-    background-color:#D9D1C720;
-    padding-top:15px;
+    background-color:rgba(0, 0, 0, 0.1);
     text-align:center;
     overflow-y:hidden;
+    /* border-right:solid 1px #97979734; */
+    box-shadow: 1px 0px 1px 0px rgba(58, 58, 58, 0.373);
 
 }
 .sidesection{
-
-    padding-top:15px;
-    overflow-y:scroll;
-    height:100%;
+    overflow-y:hidden;
+    height:85%;
+    padding-top:5%;
     display:grid;
     grid-template-columns: repeat(2,1fr);
-    grid-template-rows:auto;
-    gap:30px 10px;
+    grid-template-rows:repeat(5,1fr);
+    gap:10px 10px;
     z-index:5;
 }
 .counter{
