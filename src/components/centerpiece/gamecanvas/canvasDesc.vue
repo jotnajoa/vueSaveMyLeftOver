@@ -36,7 +36,10 @@
             <div
             :class="{expand:finalCheckout[index].expand}" 
             class='dishTitle'
-            :style="{left:`${customHeight*0}px`,top:`${customHeight*0.16}px`}"
+            :style="{left:`${customHeight*0}px`,
+            top:`${customHeight*0.16}px`,
+            width:`${finalCheckout[index].expand==true? countingWidth:150}px`
+            }"
             >{{final.ing.title}}</div>
 
             <div class="ingCounting" 
@@ -54,6 +57,24 @@
                     >
                     </div>
                 </div>
+            </div>
+
+            <div class="allIngs"
+            v-if='!collapsed'
+            :style="{left:`${customWidth*0.55}px`,width:`${countingWidth*1.5}px`}">
+            <div class="headmsg">See all ingredients</div>
+            <div class="detilsIngs" 
+            :style="{width:`${countingWidth*1.5}px`,
+            height:`${customHeight*0.3}px`
+            }">
+                <div v-for='(ings,index) of totalIngs' 
+                :key=index
+                class='details'
+                :class="{has:ings.has}"
+                >{{ings.ing}}
+                </div>
+            </div>
+
             </div>
 
         </div>
@@ -127,7 +148,7 @@ export default {
        },
 
        countingWidth(){
-           return this.customWidth*0.3
+           return this.customWidth*0.25
        },
        computedWidth(){
            let arr = [];
@@ -307,7 +328,6 @@ export default {
 }
 .dishTitle{
     position:absolute;
-    width:15px;
     display:block;
     font-size:0.8rem;
     width:100%;
@@ -332,18 +352,18 @@ export default {
 }
 .ingCounting{
     position:absolute;
-    text-decoration: underline;
+    
 }
 .headmsg{
     width:100%;
     font-size:0.8rem;
+    text-decoration: underline;
 }
 .countings{
     /* position:absolute; */
     width:100%;
     height:100%;
     display:flex;
-    border:solid 1px yellow;
     gap:10px;
     flex-wrap: wrap;
     align-content: flex-start
@@ -358,6 +378,37 @@ export default {
 }
 .ings.has{
     background-color:#D96B52;
+}
+.allIngs{
+    position:absolute;
+
+}
+.detilsIngs{
+    width:100%;
+    height:100%;
+    display:flex;
+    box-shadow:inset 0 0 5px #1b1b1b;
+    /* border-top:1px solid #d9d1c75e; */
+    gap:5px;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    overflow-y:scroll;
+    padding:0.5rem;
+}
+.details{
+    min-width:3rem;
+    height:2rem;
+    border-radius:2px;
+    flex-shrink: 0;
+    border:solid 1px #D9D1C7;
+    padding:0 0.4rem;
+    font-size:0.7rem;
+    display:flex;
+    align-items: center;
+    justify-content: center
+}
+.details.has{
+    border:solid 1px #D96B52;
 }
 
 </style>
